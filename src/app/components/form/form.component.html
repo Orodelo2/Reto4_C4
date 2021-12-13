@@ -1,0 +1,60 @@
+<div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+            <!--Campos: firstName, lastname, mother_lastname, email, password, repeat_password -->
+            <input type="text" formControlName="firstName" class="form-control" placeholder="Nombre" #firstName id="firstName" [ngClass]="{'is_invalid':submitted && f['firstName'].errors}" />
+            <div *ngif="submited && f['firstName'].errors" class="invalid-feedback">
+                <div *ngif="f['firstName'].errors['required']">Campo requerido</div>
+                <div *ngif="f['firstName'].errors['minlength']">El nombre debe contener mínimo 3 caracteres</div>
+                <div *ngif="f['firstName'].errors['maxlength']">El nombre supera la cantidad máxima de caracteres permitido -15- </div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <input type="text" formControlName="lastName" class="form-control" id="lastName" #lastName placeholder="Apellidos" [ngClass]="{'is_invalid':submitted && f['lastName'].errors}" />
+            <div *ngif="submited && f['lastName'].errors" class="invalid-feedback">
+                <div *ngif="f['lastName'].errors['required']">Campo requerido</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <input type="text" formControlName="email" id="email" #email class="form-control" [ngClass]="{'is_invalid':submitted && f['email'].errors}">
+            <div *ngif="submited && f['email'].errors" class="invalid-feedback">
+                <div *ngif="f['email'].errors['required']">Campo requerido</div>
+                <div *ngif="f['email'].errors['email']">Correo no válido</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <input type="password" formControlName="password" #password class="form-control" placeholder="Contraseña" [ngClass]="{'is_invalid':submitted && f['password'].errors}">
+            <div *ngif="submited && f['password'].errors" class="invalid-feedback">
+                <div *ngif="f['password'].errors['required']">Campo requerido</div>
+                <div *ngif="f['password'].errors['minlength']">Debe contener mínimo 6 caracteres</div>
+                <div *ngif="f['password'].errors['maxlength']">Supera la cantidad máxima de caracteres permitido</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <input type="password" formControlName="confirmpassword" class="form-control" placeholder="Repetir contraseña" [ngClass]="{'is_invalid':submitted && f['confirmpassword'].errors}">
+            <div *ngif="submited && f['password'].errors" class="invalid-feedback">
+                <div *ngif="f['confirmpassword'].errors['required']">Campo requerido</div>
+
+            </div>
+        </div>
+
+        <div class="form-group form-check mb-3">
+            <input type="checkbox" formControlName="acceptTerms" [ngClass]="{'is_invalid':submitted && f['acceptTerms'].errors}">
+            <label for="acceptTerms" class="form.check-label text-muted">  He leido y acepto los términos y condiciones de la página</label>
+            <div *ngif="submited && f['acceptTerms'].errors" class="invalid-feedback">
+                <div *ngif="f['acceptTerms'].errors['required']">Debes aceptar los términos y condiciones</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <button type="submit" class="btn btn-primary btn-sm">Aceptar</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="onReset()">Cancelar</button>
+        </div>
+
+
+    </form>
+</div>
